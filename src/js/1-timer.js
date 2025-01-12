@@ -4,7 +4,7 @@ import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-// HTML-елементи
+//* HTML-елементи
 const datetimePicker = document.querySelector("#datetime-picker");
 const startButton = document.querySelector("[data-start]");
 const daysValue = document.querySelector("[data-days]");
@@ -12,11 +12,11 @@ const hoursValue = document.querySelector("[data-hours]");
 const minutesValue = document.querySelector("[data-minutes]");
 const secondsValue = document.querySelector("[data-seconds]");
 
-// Стани
+//* Стани
 let timerInterval = null;
 let userSelectedDate = null;
 
-// Налаштування flatpickr
+//* Налаштування flatpickr
 const options = {
   enableTime: true,
   time_24hr: true,
