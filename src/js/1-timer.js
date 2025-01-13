@@ -1,16 +1,16 @@
-import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
+import flatpickr from 'flatpickr';
+import 'flatpickr/dist/flatpickr.min.css';
 
-import iziToast from "izitoast";
-import "izitoast/dist/css/iziToast.min.css";
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 //* HTML-елементи
-const datetimePicker = document.querySelector("#datetime-picker");
-const startButton = document.querySelector("[data-start]");
-const daysValue = document.querySelector("[data-days]");
-const hoursValue = document.querySelector("[data-hours]");
-const minutesValue = document.querySelector("[data-minutes]");
-const secondsValue = document.querySelector("[data-seconds]");
+const datetimePicker = document.querySelector('#datetime-picker');
+const startButton = document.querySelector('[data-start]');
+const daysValue = document.querySelector('[data-days]');
+const hoursValue = document.querySelector('[data-hours]');
+const minutesValue = document.querySelector('[data-minutes]');
+const secondsValue = document.querySelector('[data-seconds]');
 
 //* Стани
 let timerInterval = null;
@@ -26,8 +26,8 @@ const options = {
     const selectedDate = selectedDates[0];
     if (selectedDate <= new Date()) {
       iziToast.error({
-        title: "Error",
-        message: "Please choose a date in the future",
+        title: 'Error',
+        message: 'Please choose a date in the future',
       });
       startButton.disabled = true;
     } else {
@@ -37,15 +37,12 @@ const options = {
   },
 };
 
-
 flatpickr(datetimePicker, options);
 
-
-startButton.addEventListener("click", startTimer);
-startButton.disabled = true; 
+startButton.addEventListener('click', startTimer);
+startButton.disabled = true;
 
 function startTimer() {
-
   datetimePicker.disabled = true;
   startButton.disabled = true;
 
@@ -55,11 +52,11 @@ function startTimer() {
 
     if (timeDifference <= 0) {
       clearInterval(timerInterval);
-      updateTimerUI(0);
-      datetimePicker.disabled = false; 
+      updateTimerUI({ days: 0, hours: 0, minutes: 0, seconds: 0 }); //* Чтобы не было Undefined
+      datetimePicker.disabled = false;
       iziToast.success({
-        title: "Success",
-        message: "Countdown finished!",
+        title: 'Success',
+        message: 'Countdown finished!',
       });
       return;
     }
@@ -68,7 +65,6 @@ function startTimer() {
     updateTimerUI(timeComponents);
   }, 1000);
 }
-
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
@@ -91,5 +87,5 @@ function updateTimerUI({ days, hours, minutes, seconds }) {
 }
 
 function addLeadingZero(value) {
-  return String(value).padStart(2, "0");
+  return String(value).padStart(2, '0');
 }
